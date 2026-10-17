@@ -1,0 +1,348 @@
+/* ============ 像素游戏风 · 绿色蔬菜主题（移动端优先） ============ */
+:root {
+  --gb-darkest: #0f380f;
+  --gb-dark: #2d5016;
+  --gb-green: #4e7a3a;
+  --gb-mid: #8bac0f;
+  --gb-light: #c4d64f;
+  --bg: #f0f4d8;
+  --panel: #fdfff0;
+  --ink: #1a2f10;
+  --ink-soft: #4a5a3a;
+  --shadow: #2d5016;
+  --max: 640px;
+  --pixel-border: 3px solid var(--gb-darkest);
+  --pixel-shadow: 5px 5px 0 var(--shadow);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  /* 像素点阵底纹 */
+  background-image: radial-gradient(rgba(15, 56, 15, 0.07) 1.5px, transparent 1.5px);
+  background-size: 10px 10px;
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  font-size: 17px;
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: 84px;
+}
+
+::selection { background: var(--gb-light); }
+
+/* 像素 sprite 通用 */
+.sprite {
+  image-rendering: pixelated;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* ============ 顶部横幅 ============ */
+.hero {
+  text-align: center;
+  padding: 56px 24px 48px;
+  background:
+    linear-gradient(180deg, rgba(196, 214, 79, 0.35) 0%, rgba(240, 244, 216, 0) 100%);
+  border-bottom: var(--pixel-border);
+}
+.hero-sprites {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+.hero-sprites .sprite { width: 28px; height: auto; }
+.hero-sprites .sprite.big { width: 44px; }
+
+.hero-avatar-frame {
+  display: inline-block;
+  padding: 6px;
+  background: var(--panel);
+  border: var(--pixel-border);
+  box-shadow: var(--pixel-shadow);
+}
+.hero-avatar {
+  width: 112px;
+  height: 112px;
+  display: block;
+  object-fit: cover;
+  border: 2px solid var(--gb-mid);
+}
+.hero-hello {
+  margin-top: 22px;
+  color: var(--ink-soft);
+  font-size: 14px;
+  font-family: "Courier New", ui-monospace, monospace;
+  letter-spacing: 0.08em;
+}
+.hero-tagline {
+  margin-top: 10px;
+  font-size: 29px;
+  line-height: 1.45;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-shadow: 3px 3px 0 rgba(139, 172, 15, 0.35);
+}
+.hero-cursor {
+  display: inline-block;
+  width: 0.6em;
+  height: 1em;
+  background: var(--gb-darkest);
+  vertical-align: -0.1em;
+  margin-left: 4px;
+  animation: blink 1s steps(1) infinite;
+}
+.hero-sub {
+  margin-top: 14px;
+  color: var(--gb-dark);
+  font-size: 16px;
+  font-weight: 600;
+}
+.hero .btn { margin-top: 16px; }
+.hero .btn + .btn { margin-top: 12px; }
+
+.scroll-hint {
+  margin-top: 30px;
+  font-family: "Courier New", ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: var(--ink-soft);
+}
+.scroll-hint .triangle {
+  display: block;
+  margin: 6px auto 0;
+  color: var(--gb-darkest);
+  animation: blink 1.2s steps(1) infinite;
+}
+
+@keyframes blink { 50% { opacity: 0; } }
+
+/* ============ 按钮（像素硬边） ============ */
+.btn {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 14px 20px;
+  border: var(--pixel-border);
+  border-radius: 0;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.btn-primary {
+  background: var(--gb-mid);
+  color: var(--gb-darkest);
+  box-shadow: var(--pixel-shadow);
+}
+.btn-primary:active {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0 var(--shadow);
+  background: var(--gb-light);
+}
+.btn-ghost {
+  background: var(--panel);
+  color: var(--gb-dark);
+  box-shadow: var(--pixel-shadow);
+}
+.btn-ghost:active {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0 var(--shadow);
+}
+
+/* ============ 区块（RPG 对话框质感） ============ */
+.section {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 40px 24px 8px;
+}
+.game-tag {
+  font-family: "Courier New", ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  color: var(--gb-dark);
+  margin-bottom: 6px;
+}
+.game-tag::before { content: "▸ "; color: var(--gb-mid); }
+
+.section h2 {
+  font-size: 21px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  letter-spacing: 0.03em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section h2 .sprite { width: 24px; height: auto; flex: 0 0 auto; }
+
+.section p { margin-bottom: 12px; }
+.section p.note { color: var(--ink-soft); font-size: 15px; }
+.section strong { color: var(--gb-dark); }
+
+/* ============ 资质清单 ============ */
+.fact-list {
+  list-style: none;
+  background: var(--panel);
+  border: var(--pixel-border);
+  box-shadow: var(--pixel-shadow);
+  margin-bottom: 16px;
+}
+.fact-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px;
+}
+.fact-list li + li { border-top: 3px solid var(--gb-darkest); }
+.fact-label {
+  flex: 0 0 auto;
+  color: var(--ink-soft);
+  font-size: 14px;
+  font-family: "Courier New", ui-monospace, monospace;
+  letter-spacing: 0.05em;
+  padding-top: 2px;
+}
+.fact-value { text-align: right; font-weight: 600; }
+
+/* ============ 标签（游戏道具风） ============ */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.chip {
+  background: var(--gb-light);
+  color: var(--gb-darkest);
+  border: var(--pixel-border);
+  box-shadow: 3px 3px 0 var(--shadow);
+  padding: 8px 14px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* ============ 普通列表 ============ */
+.plain-list {
+  list-style: none;
+  background: var(--panel);
+  border: var(--pixel-border);
+  box-shadow: var(--pixel-shadow);
+  padding: 6px 16px;
+}
+.plain-list li {
+  padding: 12px 0 12px 24px;
+  position: relative;
+}
+.plain-list li + li { border-top: 2px dashed rgba(45, 80, 22, 0.35); }
+.plain-list li::before {
+  content: "■";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  color: var(--gb-mid);
+  font-size: 13px;
+}
+
+/* ============ 联系卡片 ============ */
+.contact-card {
+  background: var(--panel);
+  border: var(--pixel-border);
+  box-shadow: var(--pixel-shadow);
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+.contact-label {
+  color: var(--ink-soft);
+  font-size: 13px;
+  font-family: "Courier New", ui-monospace, monospace;
+  letter-spacing: 0.15em;
+}
+.contact-value {
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--gb-dark);
+  margin-top: 6px;
+  word-break: break-all;
+}
+.contact-card .note { margin-top: 8px; margin-bottom: 0; }
+
+/* ============ 区块分隔装饰 ============ */
+.divider {
+  max-width: var(--max);
+  margin: 36px auto 0;
+  padding: 0 24px;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  opacity: 0.9;
+}
+.divider .sprite { width: 22px; height: auto; }
+
+/* ============ 页脚 ============ */
+.footer {
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 13px;
+  padding: 44px 24px 28px;
+  font-family: "Courier New", ui-monospace, monospace;
+  letter-spacing: 0.05em;
+}
+
+/* ============ 移动端常驻按钮 ============ */
+.sticky-cta {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: 14px;
+  z-index: 50;
+  background: var(--gb-mid);
+  color: var(--gb-darkest);
+  border: var(--pixel-border);
+  text-align: center;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  padding: 14px;
+  box-shadow: var(--pixel-shadow);
+}
+.sticky-cta:active {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0 var(--shadow);
+  background: var(--gb-light);
+}
+
+/* ============ 滚动渐入动画 ============ */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+  .hero-cursor, .scroll-hint .triangle { animation: none; }
+}
+
+/* ============ 桌面端微调 ============ */
+@media (min-width: 720px) {
+  body { font-size: 18px; }
+  .hero { padding: 80px 24px 64px; }
+  .hero-tagline { font-size: 38px; }
+  .hero .btn { display: inline-block; width: auto; min-width: 210px; margin: 16px 8px 0; }
+  .hero .btn + .btn { margin-top: 16px; }
+  .sticky-cta { display: none; }
+  body { padding-bottom: 0; }
+}
